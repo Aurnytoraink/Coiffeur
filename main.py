@@ -6,6 +6,7 @@ import discord
 
 # PATH = Path("/home/aurnytoraink/Bot/Coiffeur")
 PATH = Path("/home/aurnytoraink/Projets/Code/Bot/Coiffeur")
+# Insérer l'adresse où se situe votre dossier
 
 TOKEN = json.loads(open(PATH/"config.json",'rb').read())["token"]
 
@@ -18,9 +19,12 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+    # Évite que le bot intercepte ces propres messages
     if message.author == client.user:
         return
 
+    # Prise en charge des majuscules et mininuscules
+    # + les textes déformés comme "qUoiiiiiiiiiiiiiiiii ?"
     if message.content.lower().startswith('quoi'):
         await message.channel.send("FEUR!!!!")
 
